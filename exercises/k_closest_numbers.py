@@ -4,7 +4,7 @@ Return the numbers in the sorted order.
 
 import os, sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from concepts.search_algos import get_closest_value
+from concepts.algos.search_algos import get_closest_value
 
 from heapq import heapify
 
