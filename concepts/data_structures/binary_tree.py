@@ -1,6 +1,6 @@
 
 class Node():
-   def __init__(self, data):
+   def __init__(self, data=None):
       self.left = None
       self.right = None
       self.data = data
@@ -23,25 +23,58 @@ class BST():
     def get_root(self):
         return self.root
 
-    def add(self, val):
+    def insert(self, val):
         if self.root is None:
             self.root = Node(val)
         else:
-            self._add(val, self.root)
+            self._insert(val, self.root)
+
             
-    def _add(self, val, node):
-        if val < node.data:
-            if node.left is None:
-                node.left = Node(val)
+    def _insert(self, val, cur_node):
+        if val < cur_node.data:
+            if cur_node.left is None:
+                cur_node.left = Node(val)
             else:
-                self._add(val, node.left)
+                self._insert(val, cur_node.left)
+
+        elif val > cur_node.data:
+            if cur_node.right is None:
+                cur_node.right = Node(val)
+            else:
+                self._insert(val, cur_node.right)
 
         else:
-            if node.right is None:
-                node.right = Node(val)
-            else:
-                self._add(val, node.right)
+            print("Value already in tree")
+    
+    def height(self):
+        if self.root is not None:
+            return self._height(self.root, 0)
+        else:
+            return 0
 
+    def _height(self, cur_node, cur_height):
+        if cur_node is None:
+            return cur_height
+        left_h = self._height(cur_node.left, cur_height+1)
+        right_h = self._height(cur_node.right, cur_height+1)
+        return max(left_h, right_h)
+
+    def search(self, value):
+        if self.root is not None:
+            return self._search(value, self.root)
+        else:
+            return False
+
+    def _search(self, value, cur_node):
+        if value == cur_node.data:
+            return True
+        elif value < cur_node.data and cur_node.left is not None:
+            return self._search(value, cur_node.left)
+        elif value > cur_node.data and cur_node.right is not None:
+            return self._search(value, cur_node.right)
+        return False
+        
+        
     # Inorder traversal
     # left -> root -> right
     def inorder_traversal(self, node):
@@ -77,11 +110,14 @@ class BST():
 if __name__ == "__main__":
 
     my_bst = BST()
-    my_bst.add(1)
-    my_bst.add(2)
-    my_bst.add(3)
-    my_bst.add(4)
-    my_bst.add(5)
+    my_bst.insert(5)
+    my_bst.insert(3)
+    my_bst.insert(4)
+    my_bst.insert(2)
+    my_bst.insert(7)
+    my_bst.insert(6)
+    my_bst.insert(8)
+
 
 
     print("Inorder traversal: ", my_bst.inorder_traversal(my_bst.root))
