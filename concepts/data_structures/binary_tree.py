@@ -107,6 +107,23 @@ class BST():
 
         return res
 
+    def mirror_tree(self):
+        if self.root is None:
+            return None
+        else:
+            self._mirror_tree(self.root)
+
+    def _mirror_tree(self, cur_node):
+        if cur_node:
+            aux = cur_node.left
+            cur_node.left = cur_node.right
+            cur_node.right = aux
+            self._mirror_tree(cur_node.left)
+            self._mirror_tree(cur_node.right)
+
+
+
+
 if __name__ == "__main__":
 
     my_bst = BST()
@@ -118,8 +135,6 @@ if __name__ == "__main__":
     my_bst.insert(6)
     my_bst.insert(8)
 
-
-
     print("Inorder traversal: ", my_bst.inorder_traversal(my_bst.root))
     print()
 
@@ -127,6 +142,11 @@ if __name__ == "__main__":
     print()
 
     print("Postorder traversal: ", my_bst.postorder_traversal(my_bst.root))
+    print()
+
+    my_bst.mirror_tree()
+    print("Mirrored inorder: ", my_bst.inorder_traversal(my_bst.root))
+    print()
 
 
 
