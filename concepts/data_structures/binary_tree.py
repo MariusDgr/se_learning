@@ -121,20 +121,32 @@ class BST():
             self._mirror_tree(cur_node.left)
             self._mirror_tree(cur_node.right)
 
+    def is_equal(self, other_tree):
+        if self.root is None and other_tree.root is None:
+            return True
+        else:
+            return self._is_equal(self.root, other_tree.root)
+
+    def _is_equal(self, node, other_node):
+
+        if node is None and other_node is None:
+            return True
+            
+        if node is not None and other_node is not None:
+            return (node.data == other_node.data and
+                self._is_equal(node.left, other_node.left) and
+                self._is_equal(node.right, other_node.right))
+  
+        return False
 
 
 
 if __name__ == "__main__":
 
     my_bst = BST()
-    my_bst.insert(5)
-    my_bst.insert(3)
-    my_bst.insert(4)
-    my_bst.insert(2)
-    my_bst.insert(7)
-    my_bst.insert(6)
-    my_bst.insert(8)
-
+    for val in [5, 3, 4, 2, 7, 6, 8]:
+        my_bst.insert(val)
+    
     print("Inorder traversal: ", my_bst.inorder_traversal(my_bst.root))
     print()
 
@@ -144,9 +156,20 @@ if __name__ == "__main__":
     print("Postorder traversal: ", my_bst.postorder_traversal(my_bst.root))
     print()
 
-    my_bst.mirror_tree()
-    print("Mirrored inorder: ", my_bst.inorder_traversal(my_bst.root))
-    print()
+    # my_bst.mirror_tree()
+    # print("Mirrored inorder: ", my_bst.inorder_traversal(my_bst.root))
+    # print()
+
+    other_tree1 = BST()
+    for val in [5, 3, 4, 2, 7, 6, 8]:
+        other_tree1.insert(val)
+    print("Same tree answer: ", my_bst.is_equal(other_tree1))
+
+    other_tree2 = BST()
+    for val in [5, 3, 11, 2, 7, 6, 8]:
+        other_tree2.insert(val)
+    print("Different tree answer: ", my_bst.is_equal(other_tree2))
+
 
 
 
