@@ -1,7 +1,4 @@
 
-from cmath import inf
-
-
 def max_sub_array_of_size_k(arr):
     """Kadane's algorithm"""
     current_max = arr[0]
