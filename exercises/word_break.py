@@ -1,5 +1,5 @@
 
-def wordBreak(s, d):
+def dp_word_break(s, d):
     """Bottom up approach with dp"""
     dp = [False] * (len(s) + 1)
     dp[len(s)] = True
@@ -13,14 +13,27 @@ def wordBreak(s, d):
             
     return dp[0]
 
+def recursive_word_break(s, d):
+    n = len(s)
+    for i in range(0, n+1):
+        fw = s[0:i]
+        sw = s[i:n-1]
+        if fw in d:
+            if (sw in d) or (len(sw) == 0):
+                return True
+            else:
+                return recursive_word_break(sw, d)
 
+    return False
 
 if __name__ == "__main__":
 
     s = "penpainappleapplepen"
     d = ["apple", "pen", "pain"]
 
-    print(wordBreak(s, d))
+    print(dp_word_break(s, d))
+    print(recursive_word_break(s, d))
+
 
 
 
