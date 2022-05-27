@@ -36,5 +36,5 @@ class LRUCache():
         if len(self.cache) > self.capacity:
             lru = self.left.next
             self.remove(lru)
-            del self.cachce[lru.key]
+            del self.cache[lru.key]
 
