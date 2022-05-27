@@ -139,6 +139,21 @@ class BST():
   
         return False
 
+    def hasPathSum1(self, targetSum):
+        if self.root is None:
+            return False
+        else:
+            return self._hasPathSum(self.root, targetSum, 0)
+        
+    def _hasPathSum1(self, node, targetSum, currentSum):
+        if node is None:
+            return False
+
+        currentSum += node.data
+        if node.left is None and node.right is None:
+            return currentSum == targetSum
+        
+        return self._hasPathSum(node.left, targetSum, currentSum) or self._hasPathSum(node.right, targetSum, currentSum)
 
 
 if __name__ == "__main__":
@@ -160,15 +175,21 @@ if __name__ == "__main__":
     # print("Mirrored inorder: ", my_bst.inorder_traversal(my_bst.root))
     # print()
 
-    other_tree1 = BST()
-    for val in [5, 3, 4, 2, 7, 6, 8]:
-        other_tree1.insert(val)
-    print("Same tree answer: ", my_bst.is_equal(other_tree1))
+    # other_tree1 = BST()
+    # for val in [5, 3, 4, 2, 7, 6, 8]:
+    #     other_tree1.insert(val)
+    # print("Same tree answer: ", my_bst.is_equal(other_tree1))
 
-    other_tree2 = BST()
-    for val in [5, 3, 11, 2, 7, 6, 8]:
-        other_tree2.insert(val)
-    print("Different tree answer: ", my_bst.is_equal(other_tree2))
+    # other_tree2 = BST()
+    # for val in [5, 3, 11, 2, 7, 6, 8]:
+    #     other_tree2.insert(val)
+    # print("Different tree answer: ", my_bst.is_equal(other_tree2))
+
+    print()
+    print(my_bst.hasPathSum(10))
+
+    print()
+    print(my_bst.hasPathSum(30))
 
 
 
