@@ -140,10 +140,7 @@ class BST():
         return False
 
     def hasPathSum1(self, targetSum):
-        if self.root is None:
-            return False
-        else:
-            return self._hasPathSum(self.root, targetSum, 0)
+        return self._hasPathSum1(self.root, targetSum, 0)
         
     def _hasPathSum1(self, node, targetSum, currentSum):
         if node is None:
@@ -153,7 +150,7 @@ class BST():
         if node.left is None and node.right is None:
             return currentSum == targetSum
         
-        return self._hasPathSum(node.left, targetSum, currentSum) or self._hasPathSum(node.right, targetSum, currentSum)
+        return self._hasPathSum1(node.left, targetSum, currentSum) or self._hasPathSum1(node.right, targetSum, currentSum)
 
 
 if __name__ == "__main__":
@@ -186,10 +183,10 @@ if __name__ == "__main__":
     # print("Different tree answer: ", my_bst.is_equal(other_tree2))
 
     print()
-    print(my_bst.hasPathSum(10))
+    print(my_bst.hasPathSum1(10))
 
     print()
-    print(my_bst.hasPathSum(30))
+    print(my_bst.hasPathSum1(30))
 
 
 
