@@ -1,4 +1,8 @@
 
+from audioop import reverse
+from types import NoneType
+
+
 class Node():
 
     def __init__(self, data=None) -> None:
@@ -71,6 +75,29 @@ class SingleLinkedList():
 
         return None
 
+    def reverse(self):
+        prev = None
+        cur = self.head
+
+        while cur is not None:
+            next = cur.next
+            cur.next = prev
+            prev = cur
+            cur = next
+
+        self.head = prev
+
+    def reverseRecursive(self):
+        self.head = self._reverseRecursive(self.head, None)
+
+    def _reverseRecursive(self, node, prev):
+        if node is None:
+            return prev
+        else:
+            next = node.next
+            node.next = prev
+            return self._reverseRecursive(next, node)
+
 
 if __name__ == "__main__":
 
@@ -82,4 +109,11 @@ if __name__ == "__main__":
 
     newlist = SingleLinkedList([1, 2, 4, 5])
     newlist.list_print()
+
+    print()
+    newlist.reverse()
+    newlist.list_print()
     
+    print()
+    newlist.reverseRecursive()
+    newlist.list_print()
