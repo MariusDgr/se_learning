@@ -14,8 +14,15 @@ def max_sub_array_of_size_k(arr):
 
     return global_max
 
+class NumArray:
 
-def maxSubArray(self, nums: List[int]) -> int:
+    def __init__(self, nums: list[int]):
+        self.nums = nums
+
+    def sumRange(self, left: int, right: int) -> int:
+        return sum(self.nums[left:right+1])
+
+def maxSubArray(self, nums: list[int]) -> int:
     
     g_max = nums[0]
     l_max = nums[0]
