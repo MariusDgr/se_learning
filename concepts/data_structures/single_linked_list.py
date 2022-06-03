@@ -98,7 +98,7 @@ class SingleLinkedList():
             node.next = prev
             return self._reverseRecursive(next, node)
 
-
+            
 if __name__ == "__main__":
 
     newlist = SingleLinkedList()
