@@ -64,3 +64,42 @@ class Solution:
             current = current.next
             
         return copy_hash_map[head]
+
+"""83. Remove Duplicates from Sorted List"""
+def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
+    
+    if head is None or head.next is None:
+        return head
+    
+    prev = head
+    cur = head.next
+    
+    while cur:
+        if cur.val == prev.val:
+            prev.next = cur.next
+            
+        else:
+            prev = cur
+            
+        cur = cur.next
+        
+    return head
+
+
+
+def deleteDuplicatesHash(self, head: Optional[ListNode]) -> Optional[ListNode]:
+    prev = None
+    cur = head
+    unique_vals = set()
+    
+    while cur:
+        if cur.val in unique_vals:
+            prev.next = cur.next
+            
+        else:
+            unique_vals.add(cur.val)
+            prev = cur
+            
+        cur = cur.next
+        
+    return head
