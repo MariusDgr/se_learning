@@ -4,7 +4,7 @@ def get_closest_value(arr, target):
      In case that multiple solutions exist, the rightmost solution is returned."""
     n = len(arr)
     left = 0
-    right = n - 1
+    right = n 
     mid = 0
 
     # edge case - last or above all
@@ -42,5 +42,9 @@ def find_closest(val1, val2, target):
 
 if __name__ == "__main__":
     arr = [0, 1, 3, 3, 7, 8]
+    res = get_closest_value(arr, 5)
+    print(res)
+
+    arr = [0]
     res = get_closest_value(arr, 5)
     print(res)
