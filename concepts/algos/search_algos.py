@@ -4,7 +4,7 @@ def get_closest_value(arr, target):
      In case that multiple solutions exist, the rightmost solution is returned."""
     n = len(arr)
     left = 0
-    right = n 
+    right = n - 1
     mid = 0
 
     # edge case - last or above all
@@ -15,10 +15,10 @@ def get_closest_value(arr, target):
         return arr[0], 0
     # BSearch solution: Time & Space: Log(N)
 
-    while left < right:
+    while left <= right:
         mid = (left + right) // 2  # find the mid
         if target < arr[mid]:
-            right = mid
+            right = mid - 1
         elif target > arr[mid]:
             left = mid + 1
         else:
