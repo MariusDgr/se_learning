@@ -8,4 +8,15 @@ def peakIndexInMountainArray(self, arr: list[int]) -> int:
         else:
             break
             
-    return max_ind
+def peakIndexInMountainArrayBnSrch(arr):
+    n = len(arr)
+    l = 0
+    r = n - 1
+    while l < r:
+        m = (l + r) // 2
+        if m - 1 > 0 and arr[m-1] > arr[m]:
+            r = m
+        elif m + 1 < n - 1 and arr[m+1] > arr[m]:
+            l = m
+        else:
+            return m
