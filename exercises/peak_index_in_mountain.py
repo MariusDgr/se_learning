@@ -5,6 +5,7 @@ def peakIndexInMountainArray(self, arr: list[int]) -> int:
         if max_val < val:
             max_ind = i
             max_val = val
-        
+        else:
+            break
             
     return max_ind
