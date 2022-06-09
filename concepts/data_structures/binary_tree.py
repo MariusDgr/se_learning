@@ -152,6 +152,23 @@ class BST():
         
         return self._hasPathSum1(node.left, targetSum, currentSum) or self._hasPathSum1(node.right, targetSum, currentSum)
 
+    def minDepth(self):
+        return self._minDepth(self.root)
+
+    def _minDepth(self, node) -> int:
+        if node is None:
+            return 0
+
+        if node.left is None and node.right is None:
+            return 1
+
+        if node.left is None:
+            return self._minDepth(node.right)+1
+
+        if node.right is None:
+            return self._minDepth(node.left) +1
+
+        return min(self._minDepth(node.left), self._minDepth(node.right))+1
 
 if __name__ == "__main__":
 
