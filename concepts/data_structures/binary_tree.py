@@ -170,6 +170,24 @@ class BST():
 
         return min(self._minDepth(node.left), self._minDepth(node.right))+1
 
+    def maxDepth(self):
+        return self._maxDepth(self.root)
+
+    def _maxDepth(self, node) -> int:
+        if node is None:
+            return 0
+
+        if node.left is None and node.right is None:
+            return 1
+
+        if node.left is None:
+            return self._maxDepth(node.right)+1
+
+        if node.right is None:
+            return self._maxDepth(node.left) +1
+
+        return max(self._maxDepth(node.left), self._maxDepth(node.right))+1
+
 if __name__ == "__main__":
 
     my_bst = BST()
