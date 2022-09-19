@@ -1,6 +1,7 @@
 def combine(self, n: int, k: int) -> List[List[int]]:
-    
+
     res = []
+
     def backtrack(i, path):
         if len(path) == k:
             res.append(path)
@@ -13,6 +14,7 @@ def combine(self, n: int, k: int) -> List[List[int]]:
 
     return res
 
+
 def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
     res = []
 
@@ -24,11 +26,12 @@ def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
         for j in range(i, len(candidates)):
             if total + candidates[j] > target:
                 continue
-   
+
             dfs(j, path + [candidates[j]], total + candidates[j])
 
     dfs(0, [], 0)
     return res
+
 
 def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
     candidates.sort()
@@ -53,24 +56,26 @@ def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]
     backtrack(curr, 0, target)
     return res
 
+
 def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
-    res=[]
+    res = []
     candidates.sort()
-    def dfs(curr,i,tot):
-        if tot==target:
+
+    def dfs(curr, i, tot):
+        if tot == target:
             res.append(curr.copy())
             return
-        
-        if i>=len(candidates) or tot>target:
+
+        if i >= len(candidates) or tot > target:
             return
-        
+
         curr.append(candidates[i])
-        dfs(curr,i+1,tot+candidates[i])
+        dfs(curr, i + 1, tot + candidates[i])
         curr.pop()
-        
-        while i+1<len(candidates) and candidates[i]==candidates[i+1]:
-            i+=1
-        dfs(curr,i+1,tot)
-        
-    dfs([],0,0)
+
+        while i + 1 < len(candidates) and candidates[i] == candidates[i + 1]:
+            i += 1
+        dfs(curr, i + 1, tot)
+
+    dfs([], 0, 0)
     return res
