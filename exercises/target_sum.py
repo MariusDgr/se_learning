@@ -15,3 +15,5 @@ def findTargetSumWays(self, nums: List[int], target: int) -> int:
                       backtrack(i + 1, s - nums[i]))
 
         return dp[(i, s)]
+
+    return backtrack(0, 0)
